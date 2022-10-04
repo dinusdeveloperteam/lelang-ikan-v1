@@ -64,7 +64,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body text-dark font-weight-bold bg-white">
-                                                        <form action="<?= base_url('panitia/suratpengiriman/edit/') . $row['lelang_id'] ?>" method="POST">
+                                                        <form action="<?= base_url('panitia/suratpengiriman/edit/'. $row['pengiriman_id']) ?>" method="POST">
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
@@ -72,7 +72,6 @@
                                                                         <div class="input-group mb-3">
                                                                             <input type="text" class="form-control" name="nama" id="nama" value="<?= $row['nama'] ?>" aria-describedby="basic-addon3" readonly>
                                                                         </div>
-
                                                                         <label for="basic-url">ID Lelang</label><br>
                                                                         <div class="input-group mb-1">
                                                                             <input type="text" class="form-control" name="lelang_id" id="lelang_id" value="<?= $row['lelang_id'] ?>" aria-describedby="basic-addon3" readonly>
@@ -106,7 +105,7 @@
                                                                             <input type="text" class="form-control" name="no_telp_driver" id="no_telp_driver" value="<?= $row['no_telp_driver'] ?>" aria-describedby="basic-addon3" readonly>
                                                                         </div><br>
                                                                     </div>
-                                                                    <div class="col-6">
+                                                                    <div class="col-md-6">
                                                                         <label for="basic-url">Provinsi</label>
                                                                         <div class="input-group mb-3">
                                                                             <input type="text" class="form-control" name="provinsi_kirim" id="provinsi_kirim" value="<?= $row['provinsi_kirim'] ?>" aria-describedby="basic-addon3" readonly>
@@ -195,25 +194,32 @@
                                             </div>
                                         </div>
                                         <!-- End Detail -->
-                                        <div class="modal fade" id="deleteSuratModal<?= $row['pengiriman_id'] ?>" tabindex="-1" aria-labelledby="deleteSuratModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content bg-light">
+
+                                        <!-- Modal Delete -->
+                                        <div class="modal fade" id="deleteSuratModal<?= $row['pengiriman_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteSuratModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteSuratModalLabel">Hapus Pembayaran</h5>
-                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                        <h5 class="modal-title" id="deleteSuratModalLabel">Hapus Data Pelelang</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h4>Yakin ingin menghapus Pembayaran</h4>
+                                                        <span>Yakin ingin hapus data dengan ID <?= $row['pengiriman_id'] ?></span>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                                                        <a href="<?= base_url() ?>panitia/suratpengiriman/delete/<?= $row['pengiriman_id'] ?>" class="btn btn-danger">Ya</a>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="<?= base_url('panitia/suratpengiriman/delete/' . $row['pengiriman_id']) ?>" class="btn btn-danger">Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            </td>
-                                            </tr>
-                                        <?php } ?>
+                                        </div>
+                                        <!-- End Modal Delete -->
+
+                                        </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

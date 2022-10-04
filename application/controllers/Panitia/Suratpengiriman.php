@@ -29,24 +29,24 @@ class Suratpengiriman extends CI_Controller
     //Fungsi Delete
     public function delete($pengiriman_id)
     {
-        $this->M_suratperintah->deletePengiriman($pengiriman_id);
+        $this->M_suratperintah->delete($pengiriman_id);
         redirect('panitia/suratpengiriman/');
     }
     
-    //Fungsi Edit
     public function edit($id)
     {
-        $this->form_validation->set_rules('status_transaksi', 'Status Order', 'required');
+        $id = $this->uri->segment(4);
+        $this->form_validation->set_rules('status_transaksi', 'status_transaksi', 'required');
+
         if ($this->form_validation->run() == false) {
             redirect('panitia/suratpengiriman/');
         } else {
             $this->db->set('status_transaksi', $this->input->post('status_transaksi', true));
-            $this->db->where('lelang_id', $id);
+            $this->db->where('pengiriman_id', $id);
             $this->db->update('lelang_pengiriman');
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
-            redirect('panitia/suratpengiriman/');
         }
-
+        redirect('panitia/suratpengiriman/');
     }
 
     //Fungsi Kirim Email

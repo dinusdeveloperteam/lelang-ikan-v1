@@ -11,9 +11,9 @@ class M_suratperintah extends CI_Model
     }
 
     //Fungsi Delete
-    public function deletePengiriman($lelang_id)
+    public function delete($pengiriman_id)
     {
-        return $this->db->delete('lelang_pengiriman', ['pengiriman_id' => $lelang_id]);
+        return $this->db->delete('lelang_pengiriman', ['pengiriman_id' => $pengiriman_id]);
     }
 
     //Session Data
