@@ -1,0 +1,52 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Penerima extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('panitia/M_penerima');
+        $this->load->helper('url');
+    }
+    public function index()
+    {
+
+        $TampilData = $this->M_penerima->penerima();
+        $page = 'Penerima Lelang';
+        $data = [
+            'Penerima' => $TampilData,
+            'title' => $page,
+            'breadcrumb' => $page
+        ];
+
+        $data['user'] = $this->M_penerima->user_panitiaById($this->session->panitia_id);
+        $this->load->view('panitia/partials/start', $data);
+        $this->load->view('panitia/kelola_lelang/penerima', $data);
+        $this->load->view('panitia/partials/end');
+    }
+
+
+    //Fungsi Edit
+    public function edit($id)
+    {
+        $this->form_validation->set_rules('konfirmasi_terimaproduk', 'Status Order', 'required');
+        if ($this->form_validation->run() == false) {
+            redirect('panitia/penerima/');
+        } else {
+            $this->db->set('konfirmasi_terimaproduk', $this->input->post('konfirmasi_terimaproduk', true));
+            $this->db->where('peserta_id', $id);
+            $this->db->update('lelang_pemenang');
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
+            var_dump($this->db->last_query());
+            redirect('panitia/penerima/');
+        }
+    }
+
+
+    public function delete($lelang_id)
+    {
+        $this->M_penerima->delete($lelang_id);
+        redirect('panitia/penerima');
+    }
+}
