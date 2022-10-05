@@ -6,7 +6,7 @@ class M_suratperintah extends CI_Model
     //Fungsi Index
     function suratperintah()
     {
-        $query = "SELECT lpg.*,lp.*,p.* FROM lelang_pengiriman lpg,lelang_pemenang lp,peserta p WHERE lpg.lelang_id=lp.lelang_id=p.peserta_id";
+        $query = "SELECT lpg.*,lp.*,p.* FROM lelang_pengiriman lpg,lelang_pemenang lp,peserta p WHERE lpg.lelang_id=lp.lelang_id AND lp.peserta_id=p.peserta_id";
         return $this->db->query($query)->result_array();
     }
 

@@ -12,7 +12,7 @@
                                 <thead>
                                     <tr>
                                         <th> No </th>
-                                        <th> ID </th>
+                                        <th> ID Pelelang </th>
                                         <th> Nama </th>
                                         <th> Jenis</th>
                                         <th> Provinsi </th>
@@ -48,22 +48,28 @@
                                                     if ($row->status == 0) {
                                                         echo "<span class='badge badge-secondary'>Belum Diverifikasi</span>";
                                                     } else if ($row->status == 1) {
-                                                        echo "<span class='badge badge-success'>Diverifikasi</span>";
+                                                        echo "<span class='badge badge-success'>Terverifikasi</span>";
                                                     } else if ($row->status == 2) {
-                                                        echo "<span class='badge badge-warning'>Di tolak</span>";
+                                                        echo "<span class='badge badge-warning'>Ditolak</span>";
                                                     } else if ($row->status == 3) {
-                                                        echo "<span class='badge badge-danger'>Di banned</span>";
+                                                        echo "<span class='badge badge-danger'>Dibanned</span>";
                                                     } else {
-                                                        echo "Unknown";
+                                                        echo "Tidak diketahui";
                                                     }
                                                     ?>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editPelelangModal<?= $row->pelelang_id ?>"><i class="mdi mdi-file-document-edit"></i> Ubah</a>
-                                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePelelangModal<?= $row->pelelang_id ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
+                                                <a href="#" data-toggle="modal" data-target="#editVerifikasiModal<?= $row->pelelang_id ?>">
+                                                    <button type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="bottom" title="Verifikasi"><i class="mdi mdi-pencil-outline"></i></button>
+                                                </a>
+                                                <a href="#" data-toggle="modal" data-target="#detailPelelangModal<?= $row->pelelang_id ?>">
+                                                    <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="mdi mdi-information-outline"></i></button>
+                                                </a>
+                                                <a href="#" data-toggle="modal" data-target="#deletePelelangModal<?= $row->pelelang_id ?>">
+                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="mdi mdi-delete-outline"></i></button>
                                                 </a>
                                             </td>
                                             <!-- Edit Menu Modal -->
-                                            <div class="modal fade" id="editPelelangModal<?= $row->pelelang_id ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
+                                            <div class="modal fade" id="detailPelelangModal<?= $row->pelelang_id ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content bg-default">
                                                         <div class="modal-header bg-white">
@@ -124,19 +130,16 @@
                                                                             </div>
                                                                             <label for="basic-url">Jenis</label><br>
                                                                             <div class="input-group mb-3">
-                                                                                <select class="custom-select" name="status" id="status">
-                                                                                    <option value="<?= $row->status ?>"><?php
-                                                                                                                        if ($row->jenis == 0) {
-                                                                                                                            echo 'Perusahaan';
-                                                                                                                        } else if ($row->jenis == 1) {
-                                                                                                                            echo 'Perorangan';
-                                                                                                                        } else {
-                                                                                                                            echo '';
-                                                                                                                        }
-                                                                                                                        ?></option>
-                                                                                    <option value="0">Perusahaan</option>
-                                                                                    <option value="1">Perorangan</option>
-                                                                                </select>
+                                                                                <?php
+                                                                                if ($row->jenis == 0) {
+                                                                                    $status = "Perorangan";
+                                                                                } else if ($row->jenis == 1) {
+                                                                                    $status = "Perusahaan";
+                                                                                } else {
+                                                                                    $status = "Tidak diketahui";
+                                                                                }
+                                                                                ?>
+                                                                                <input type="text" class="form-control" name="jenis" id="jenis" value="<?= $status ?>" aria-describedby="basic-addon3" readonly>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -169,28 +172,6 @@
                                                                             <div class="input-group mb-3">
                                                                                 <img src="<?= base_url('vendors/uploads/panitia/file/siup/' . $row->fileSIUP) ?>" class="img-thumbnail thumbnail zoom" width="500px" alt="File SIUP <?= $row->fileSIUP ?>">
                                                                             </div>
-                                                                            <label for="basic-url">Verifikasi Kelengkapan Data</label><br>
-                                                                            <div class="input-group mb-3">
-                                                                                <select class="custom-select" name="status" id="status">
-                                                                                    <option value="<?= $row->status ?>"><?php
-                                                                                                                        if ($row->status == 0) {
-                                                                                                                            echo 'Belum Diverifikasi';
-                                                                                                                        } else if ($row->status == 1) {
-                                                                                                                            echo 'Diverifikasi';
-                                                                                                                        } else if ($row->status == 2) {
-                                                                                                                            echo 'Ditolak';
-                                                                                                                        } else if ($row->status == 3) {
-                                                                                                                            echo 'Dibanned';
-                                                                                                                        } else {
-                                                                                                                            echo 'Status Tidak diketahui';
-                                                                                                                        }
-                                                                                                                        ?></option>
-                                                                                    <option value="0">Belum Diverifikasi</option>
-                                                                                    <option value="1">Diverifikasi</option>
-                                                                                    <option value="2">Ditolak</option>
-                                                                                    <option value="3">Dibanned</option>
-                                                                                </select>
-                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -203,6 +184,52 @@
                                                 </div>
                                                 </form>
                                             </div>
+                                            <!-- Modal Verifikasi -->
+                                            <div class="modal fade" id="editVerifikasiModal<?= $row->pelelang_id ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content bg-default">
+                                                        <div class="modal-header bg-white">
+                                                            <h5 class="modal-title font-weight-bold" id="editOrderModal">Verifikasi Data Pelelang</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body text-dark font-weight-bold bg-white">
+                                                            <form action="<?= base_url('panitia/pelelang/verifikasi/' . $row->pelelang_id) ?>" method="post">
+                                                                <div class="input-group">
+                                                                    <select class="custom-select" name="status" id="status">
+                                                                        <option value="<?= $row->status ?>">
+                                                                            <?php
+                                                                            if ($row->status == 0) {
+                                                                                echo 'Belum diverifikasi';
+                                                                            } else if ($row->status == 1) {
+                                                                                echo 'Terverifikasi';
+                                                                            } else if ($row->status == 2) {
+                                                                                echo 'Ditolak';
+                                                                            } else if ($row->status == 3) {
+                                                                                echo 'Dibanned';
+                                                                            } else {
+                                                                                echo 'Tidak diketahui';
+                                                                            }
+                                                                            ?>
+                                                                        </option>
+                                                                        <option value="0">Belum diverifikasi</option>
+                                                                        <option value="1">Terverifikasi</option>
+                                                                        <option value="2">Ditolak</option>
+                                                                        <option value="3">Dibanned</option>
+                                                                    </select>
+                                                                </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button> -->
+                                                            <button type="submit" class="btn btn-sm btn-success"><i class="mdi mdi-content-save"></i> Simpan</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal Verifikasi -->
+
                                             <!-- Modal Delete -->
                                             <div class="modal fade" id="deletePelelangModal<?= $row->pelelang_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">

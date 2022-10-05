@@ -20,7 +20,6 @@
                                         <th>Nama produk</th>
                                         <th>Tanggal Diumumkan</th>
                                         <th>Status Pembayaran</th>
-                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -49,7 +48,6 @@
                                             }
                                             ?>
                                             <td><?= $statusPembayaran ?></td>
-                                            <td>q</td>
                                             <td>
                                                 <div style="">
                                                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editMenuModal<?= $row->peserta_id ?>"><i class="mdi mdi-check-circle"></i> Verifikasi</a>

@@ -22,7 +22,7 @@ class Suratpengiriman extends CI_Controller
        
         $data['user'] = $this->M_suratperintah->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
-        $this->load->view('panitia/kelola_lelang/surat', $data);
+        $this->load->view('panitia/kelola_lelang/suratpengiriman', $data);
         $this->load->view('panitia/partials/end');
     }
 

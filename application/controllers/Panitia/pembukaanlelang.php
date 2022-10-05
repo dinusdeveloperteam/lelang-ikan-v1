@@ -43,14 +43,12 @@ class Pembukaanlelang extends CI_Controller
     {
 
         $this->form_validation->set_rules('status', 'status', 'required');
-        $this->form_validation->set_rules('konfirmasi_terimaproduk', 'Status Order', 'required');
-
         if ($this->form_validation->run() == false) {
             redirect('panitia/pembukaanlelang/');
         } else {
             $this->db->set('status', $this->input->post('status', true));
-            $this->db->where('peserta_id');
-            $this->db->update('lelang_bid');
+            $this->db->where('lelang_id');
+            $this->db->update('lelang');
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
         }
         redirect('panitia/pembukaanlelang/');

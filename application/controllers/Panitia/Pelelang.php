@@ -27,7 +27,7 @@ class Pelelang extends CI_Controller
     }
 
     //Fungsi Edit
-    public function edit($id)
+    public function verifikasi($id)
     {
         $id = $this->uri->segment(4);
         $data = [

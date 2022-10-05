@@ -200,13 +200,13 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteSuratModalLabel">Hapus Data Pelelang</h5>
+                                                        <h5 class="modal-title" id="deleteSuratModalLabel">Hapus Data Surat Pengiriman</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <span>Yakin ingin hapus data dengan ID <?= $row['pengiriman_id'] ?></span>
+                                                        <span>Yakin ingin hapus data? ?></span>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

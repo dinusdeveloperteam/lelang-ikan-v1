@@ -15,8 +15,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
                                         <th>ID Pelelang</th>
+                                        <th>Nama</th>
                                         <th>Bank</th>
                                         <th>Atas Nama</th>
                                         <th>No Rekening</th>
@@ -54,24 +54,24 @@
                                                                     <div class="modal-body">
                                                                         <div class="row">
                                                                             <div class="col-6">
-                                                                                <label for="basic-url">Nama </label>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" class="form-control" name="pelelang_id" id="pelelang_id" value="<?= $v['nama'] ?>" aria-describedby="basic-addon3" readonly>
-                                                                                </div>
                                                                                 <label for="basic-url">ID Pelelang</label>
                                                                                 <div class="input-group mb-1">
                                                                                     <input type="text" class="form-control" name="peserta_id" id="peserta_id" value="<?= $v['pelelang_id'] ?>" aria-describedby="basic-addon3" readonly>
+                                                                                </div>
+                                                                                <label for="basic-url">Nama </label>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" class="form-control" name="pelelang_id" id="pelelang_id" value="<?= $v['nama'] ?>" aria-describedby="basic-addon3" readonly>
                                                                                 </div>
                                                                                 <label for="basic-url">Bank</label>
                                                                                 <div class="input-group mb-1">
                                                                                     <input type="text" class="form-control" name="nama_peserta" id="nama_peserta" value="<?= $v['bank'] ?>" aria-describedby="basic-addon3" readonly>
                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="col-6">
                                                                                 <label for="basic-url">Atas Nama</label>
                                                                                 <div class="input-group mb-1">
                                                                                     <input type="text" class="form-control" name="nama_produk" id="nama_produk" value="<?= $v['atasnama'] ?>" aria-describedby="basic-addon3" readonly>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-6">
                                                                                 <label for="basic-url">No Rekening</label>
                                                                                 <div class="input-group mb-3">
                                                                                     <input type="text" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" value="<?= $v['norekening'] ?>" aria-describedby="basic-addon3" readonly>

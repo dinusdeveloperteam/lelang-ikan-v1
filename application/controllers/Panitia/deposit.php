@@ -19,7 +19,7 @@ class Deposit extends CI_Controller
             'title' => $page,
             'breadcrumb' => $page
         ];
-       
+
         $data['user'] = $this->M_deposit->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/peserta_deposit', $data);
@@ -29,18 +29,24 @@ class Deposit extends CI_Controller
     //Fungsi Edit
     public function edit($id)
     {
-        $id = $this->uri->segment(4);
-        $data = [
-            'status' => $this->input->post('status')
-        ];
-        $this->db->where('peserta_deposit', $id);
-        $this->db->update('peserta_deposit', $data);
-        redirect('panitia/deposit');
+        $this->form_validation->set_rules('status', 'Status Order', 'required');
+        if ($this->form_validation->run() == false) {
+            redirect('panitia/deposit/');
+            return false;
+        } else {
+            $this->db->set('status', $this->input->post('status', true));
+            $this->db->where('peserta_id', $id);
+            $this->db->update('peserta_deposit');
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
+            redirect('panitia/deposit/');
+        }
     }
-    // //Fungsi Delete
-    // public function hapusPelelang($id)
-    // {
-    //     $this->Panitia->hapusDataPelelang($id);
-    //     redirect('panitia/pelelang');
-    // }
+
+    // Fungsi Delete
+
+    public function delete($peserta_id)
+    {
+        $this->M_deposit->delete($peserta_id);
+        redirect('panitia/deposit/');
+    }
 }
