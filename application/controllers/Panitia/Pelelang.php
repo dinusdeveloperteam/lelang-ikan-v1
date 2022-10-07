@@ -27,7 +27,7 @@ class Pelelang extends CI_Controller
     }
 
     //Fungsi Edit
-    public function verifikasi($id)
+    public function edit($id)
     {
         $id = $this->uri->segment(4);
         $data = [
@@ -38,9 +38,9 @@ class Pelelang extends CI_Controller
         redirect('panitia/pelelang');
     }
     //Fungsi Delete
-    public function delete($pelelang_id)
+    public function hapusPelelang($id)
     {
-        $this->M_pelelang->delete($pelelang_id);
+        $this->Panitia->hapusDataPelelang($id);
         redirect('panitia/pelelang');
     }
 }

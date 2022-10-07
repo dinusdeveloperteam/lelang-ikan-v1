@@ -32,9 +32,9 @@ class Pemenang extends CI_Controller
 
 
     //Fungsi Delete
-    public function delete($lelang_id)
+    public function deletepemenang($id)
     {
-        $this->M_pemenang->delete($lelang_id);
+        $this->M_pemenang->deletepemenang($id);
 
         redirect('panitia/pemenang');
     }

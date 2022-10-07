@@ -10,7 +10,7 @@ class M_peserta extends CI_Model
         $query = $this->db->get('peserta');
         return $query->result();
     }
-    public function delete($peserta_id)
+    public function hapusDataPeserta($peserta_id)
     {
         return $this->db->delete('peserta', ['peserta_id' => $peserta_id]);
     }

@@ -13,13 +13,13 @@ class Penerima extends CI_Controller
     {
 
         $TampilData = $this->M_penerima->penerima();
-        $page = 'Penerima Lelang';
+        $page = 'Penerima';
         $data = [
             'Penerima' => $TampilData,
             'title' => $page,
             'breadcrumb' => $page
         ];
-
+       
         $data['user'] = $this->M_penerima->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/penerima', $data);
@@ -41,12 +41,14 @@ class Penerima extends CI_Controller
             var_dump($this->db->last_query());
             redirect('panitia/penerima/');
         }
+
     }
 
 
-    public function delete($lelang_id)
+    //Fungsi Delete
+    public function delete($peserta_id)
     {
-        $this->M_penerima->delete($lelang_id);
+        $this->Panitia->deletePenerima($peserta_id);
         redirect('panitia/penerima');
     }
 }

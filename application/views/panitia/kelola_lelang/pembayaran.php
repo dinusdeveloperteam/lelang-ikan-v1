@@ -45,13 +45,12 @@
                                                         echo "<span class='badge badge-success'>Telah Dibayar</span>";
                                                     } else if ($v['status'] == 2) {
                                                         echo "<span class='badge badge-danger'>Ditolak</span>";
-                                                    } else {
+                                                    }else{
                                                         echo 'Data tidak diketahui';
                                                     }
                                                     ?>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editMenuModal<?= $v['lelang_id'] ?>"><i class="mdi mdi-file-document-edit"></i> Ubah</a>
-                                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePembayaranModal<?= $v['lelang_id'] ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
+                                                <a href="#" class="btn btn-sm btn-warning mr-2" data-toggle="modal" data-target="#editMenuModal<?= $v['lelang_id'] ?>"><i class="fas fa-edit"></i>Ubah</a>
                                                 <!-- Edit Menu Modal -->
                                                 <div class="modal fade" id="editMenuModal<?= $v['lelang_id'] ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl">
@@ -102,9 +101,9 @@
                                                                                             $status = 'Belum dibayar';
                                                                                         } else if ($data == 1) {
                                                                                             $status = 'Telah dibayar';
-                                                                                        } else if ($data == 2) {
+                                                                                        } else if ($data == 2){
                                                                                             $status = 'Ditolak';
-                                                                                        } else {
+                                                                                        }else{
                                                                                             $status = 'Data tidak diketahui';
                                                                                         }
                                                                                         ?>
@@ -132,27 +131,25 @@
                                                 </div>
                                                 <!-- End Detail -->
 
-                                                <!-- Modal Delete -->
-                                                <div class="modal fade" id="deletePembayaranModal<?= $v['lelang_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
+
+                                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletepenjualModal<?= $v['lelang_id'] ?>"><i class="fas fa-trash-can"></i>Hapus</a>
+                                                <div class="modal fade" id="deletepenjualModal<?= $v['lelang_id'] ?>" tabindex="-1" aria-labelledby="deletepenjualModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content bg-light">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Pembayaran</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                                <h5 class="modal-title" id="deletepenjualModalLabel">Hapus Pembayaran</h5>
+                                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <span>Yakin ingin hapus data?</span>
+                                                                <h4>Yakin ingin menghapus data?</h4>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <a href="<?= base_url('panitia/pembayaran/delete/' . $v['lelang_id']) ?>" class="btn btn-danger">Hapus</a>
+                                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                                                <a href="<?= base_url() ?>panitia/pembayaran/delete/<?= $v['lelang_id'] ?>" class="btn btn-danger">Ya</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Modal Delete -->
                                             </td>
                                         </tr>
                                     <?php } ?>

@@ -9,14 +9,12 @@ class M_penerima extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    function deletePenerima($peserta_id)
+    {
+        return $this->db->query("DELETE lp, p FROM lelang_pemenang lp JOIN peserta p ON lp.peserta_id=p.peserta_id WHERE lp.peserta_id=$peserta_id");
+    }
     function user_panitiaById($name)
     {
-        return $this->db->
-        get_where('panitia', ['panitia_id' => $name])->row();
-    }
-
-    function delete($lelang_id)
-    {
-        return $this->db->delete('lelang_pemenang', ['lelang_id' => $lelang_id]);
+        return $this->db->get_where('panitia', ['panitia_id' => $name])->row();
     }
 }

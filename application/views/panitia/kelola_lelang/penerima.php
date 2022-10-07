@@ -14,7 +14,6 @@
                             <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Nama</th>
                                         <th>Lelang ID</th>
                                         <th>Peserta ID</th>
@@ -24,11 +23,8 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $count = 0;
                                     foreach ($Penerima as $row) {
-                                        $count = $count + 1;
                                     ?>
-                                        <td><?= $count ?></td>
                                         <td><?= $row['nama'] ?></td>
                                         <td><?= $row['lelang_id'] ?></td>
                                         <td><?= $row['peserta_id'] ?></td>
@@ -43,7 +39,7 @@
 
                                         <td>
                                             <a href="#" class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#editMenuModal<?= $row['peserta_id'] ?>"><i class="mdi mdi-file-document-edit"></i> </i>Ubah</a>
-                                            <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePenerimaLelangModal<?= $row['peserta_id'] ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
+                                            <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletepenjualModal<?= $row['peserta_id'] ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
                                         </td>
                                         <!-- Edit Menu Modal -->
                                         <div class="modal fade" id="editMenuModal<?= $row['peserta_id'] ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
@@ -136,28 +132,24 @@
                                         </div>
                                         <!-- End Detail -->
 
-                                        <!-- Modal Delete -->
-                                        <div class="modal fade" id="deletePenerimaLelangModal<?= $row['peserta_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
+
+                                        <div class="modal fade" id="deletepenjualModal<?= $row['peserta_id'] ?>" tabindex="-1" aria-labelledby="deletepenjualModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content bg-light">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Penerima Lelang</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <h5 class="modal-title" id="deletepenjualModalLabel">Hapus Penerima Lelang</h5>
+                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <span>Yakin ingin hapus data?</span>
+                                                        <h4>Yakin ingin menghapus data?</h4>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a href="<?= base_url('panitia/penerima/delete/' . $row['lelang_id']) ?>" class="btn btn-danger">Hapus</a>
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                                        <a href="<?= base_url() ?>panitia/penerima/delete/<?= $row['peserta_id'] ?>" class="btn btn-danger">Ya</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Modal Delete -->
-
                                         </td>
                                         </tr>
                                     <?php } ?>

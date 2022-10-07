@@ -32,8 +32,9 @@ class Peserta extends CI_Controller
     {
         $id = $this->uri->segment(4);
         $data = [
-            'status' => $this->input->post('status')
+            'status' => $this->input->post('status'),'jeniskel' => $this->input->post('jeniskel')
         ];
+        $this->db->set('jeniskel', $this->input->post('jeniskel', true));
         $this->db->where('peserta_id', $id);
         $this->db->update('peserta', $data);
         redirect('panitia/peserta');
@@ -41,9 +42,9 @@ class Peserta extends CI_Controller
 
 
     //Fungsi Delete
-    public function delete($peserta_id)
+    public function hapusPeserta($peserta_id)
     {
-        $this->M_peserta->delete($peserta_id);
+        $this->Panitia->hapusDataPeserta($peserta_id);
         redirect('panitia/peserta');
     }
 }

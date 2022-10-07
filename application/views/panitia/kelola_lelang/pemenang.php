@@ -20,6 +20,7 @@
                                         <th>Nama produk</th>
                                         <th>Tanggal Diumumkan</th>
                                         <th>Status Pembayaran</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,10 +49,11 @@
                                             }
                                             ?>
                                             <td><?= $statusPembayaran ?></td>
+                                            <td>q</td>
                                             <td>
                                                 <div style="">
                                                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editMenuModal<?= $row->peserta_id ?>"><i class="mdi mdi-check-circle"></i> Verifikasi</a>
-                                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePemenangModal<?= $row->peserta_id ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
+                                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletepenjualModal<?= $row->peserta_id ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
                                                     <a href="<?= base_url(); ?>panitia/suratpengiriman/update/<?= $row->lelang_id; ?>" class="btn btn-sm btn-info mr-2"><i class="fa fa-info-circle"></i>Pengiriman</a>
                                                 </div>
                                                 <!-- Edit Menu Modal -->
@@ -103,27 +105,24 @@
                                                 </div> -->
                                                 <!-- End Detail -->
 
-                                                <!-- Modal Delete -->
-                                                <div class="modal fade" id="deletePemenangModal<?= $row->peserta_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
+                                                <!-- Modal Hapus -->
+                                                <div class="modal fade" id="deletepenjualModal<?= $row->peserta_id ?>" tabindex="-1" aria-labelledby="deletepenjualModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content bg-light">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Pemenang Lelang</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                                <h5 class="modal-title" id="deletepenjualModalLabel">Hapus Pembayaran</h5>
+                                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <span>Yakin ingin hapus data?</span>
+                                                                <h4>Yakin ingin menghapus Pembayaran</h4>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <a href="<?= base_url('panitia/pemenang/delete/' . $row->lelang_id) ?>" class="btn btn-danger">Hapus</a>
+                                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                                                <a href="<?= base_url() ?>panitia/pemenang/deletepemenang/<?= $row->lelang_id ?>" class="btn btn-danger">Ya</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Modal Delete -->
                                             </td>
                                             </a>
                         </div>

@@ -15,11 +15,12 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>ID Lelang</th>
                                         <th>ID Pelelang</th>
-                                        <th>Nama</th>
-                                        <th>Bank</th>
-                                        <th>Atas Nama</th>
-                                        <th>No Rekening</th>
+                                        <th>ID Panitia</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Nominal Dibayarkan</th>
+                                        <th>Bukti Transfer</th>
                                         <th width="15%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -32,11 +33,12 @@
                                     ?>
                                         <tr>
                                             <td><?= $count ?></td>
-                                            <td><?= $v['nama'] ?></td>
+                                            <td><?= $v['lelang_id'] ?></td>
                                             <td><?= $v['pelelang_id'] ?></td>
-                                            <td><?= $v['bank'] ?></td>
-                                            <td><?= $v['atasnama'] ?></td>
-                                            <td><?= $v['norekening'] ?></td>
+                                            <td><?= $v['panitia_id'] ?></td>
+                                            <td><?= $v['nama'] ?></td>
+                                            <td><?= $v['nominal_dibayarkan'] ?></td>
+                                            <td><img src="<?= base_url('vendors/uploads/panitia/buktitransfer') . $v['bukti_transfer']; ?>" alt="Bukti Transfer" width="75px" height="75px" class="zoom"></td>
                                             <td>
                                                 <a href="#" class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#editMenuModal<?= $v['pelelang_id'] ?>"><i class="fas fa-edit"></i>Detail</a>
                                                 <!-- Edit Menu Modal -->
@@ -50,38 +52,45 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body text-dark font-weight-bold bg-white">
-                                                                <form action="<?= base_url('panitia/p_lelang/edit/' . $v['pelelang_id']) ?>" method="POST">
+                                                                <form action="<?= base_url('panitia/hasillelang/halaman_edit/' . $v['lelang_id']) ?>" method="POST" enctype="multipart/form-data">
                                                                     <div class="modal-body">
                                                                         <div class="row">
                                                                             <div class="col-6">
+                                                                                <label for="basic-url">ID Lelang </label>
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="text" class="form-control" name="pelelang_id" id="pelelang_id" value="<?= $v['lelang_id'] ?>" aria-describedby="basic-addon3" readonly>
+                                                                                </div>
                                                                                 <label for="basic-url">ID Pelelang</label>
                                                                                 <div class="input-group mb-1">
                                                                                     <input type="text" class="form-control" name="peserta_id" id="peserta_id" value="<?= $v['pelelang_id'] ?>" aria-describedby="basic-addon3" readonly>
                                                                                 </div>
-                                                                                <label for="basic-url">Nama </label>
-                                                                                <div class="input-group mb-3">
-                                                                                    <input type="text" class="form-control" name="pelelang_id" id="pelelang_id" value="<?= $v['nama'] ?>" aria-describedby="basic-addon3" readonly>
-                                                                                </div>
-                                                                                <label for="basic-url">Bank</label>
+                                                                                <label for="basic-url">ID Panitia</label>
                                                                                 <div class="input-group mb-1">
-                                                                                    <input type="text" class="form-control" name="nama_peserta" id="nama_peserta" value="<?= $v['bank'] ?>" aria-describedby="basic-addon3" readonly>
+                                                                                    <input type="text" class="form-control" name="nama_peserta" id="nama_peserta" value="<?= $v['panitia_id'] ?>" aria-describedby="basic-addon3" readonly>
+                                                                                </div>
+                                                                                <label for="basic-url">Nama Panitia</label><br>
+                                                                                <div class="input-group mb-1">
+                                                                                    <input type="text" class="form-control" name="nama_produk" id="nama_produk" value="<?= $v['nama'] ?>" aria-describedby="basic-addon3" readonly>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="basic-url">Atas Nama</label>
-                                                                                <div class="input-group mb-1">
-                                                                                    <input type="text" class="form-control" name="nama_produk" id="nama_produk" value="<?= $v['atasnama'] ?>" aria-describedby="basic-addon3" readonly>
-                                                                                </div>
-                                                                                <label for="basic-url">No Rekening</label>
+                                                                                <label for="basic-url">Nominal Dibayarkan</label>
                                                                                 <div class="input-group mb-3">
-                                                                                    <input type="text" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" value="<?= $v['norekening'] ?>" aria-describedby="basic-addon3" readonly>
+                                                                                    <input type="text" class="form-control" name="nominal_dibayarkan" id="nominal_dibayarkan" value="<?= $v['nominal_dibayarkan'] ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="basic-url">Bukti Transfer</label>
+                                                                                <div class="input-group mb-3">
+                                                                                    <img src="<?= base_url('vendors/uploads/panitia/buktitransfer/') . $v['bukti_transfer'] ?>" alt="BuktiTF" width="200px">
+                                                                                    <input type="file" class="form-control" name="bukti_transfer" id="bukti_transfer">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer bg-white">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                                        <button type="submit" class="btn btn-success">Bayar</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -90,25 +99,6 @@
                                                 </div>
                                                 <!-- End Detail -->
 
-
-                                                <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#deletepenjualModal<?= $v['pelelang_id'] ?>"><i class="fas fa-trash-can"></i>Bayar</a>
-                                                <div class="modal fade" id="deletepenjualModal<?= $v['pelelang_id'] ?>" tabindex="-1" aria-labelledby="deletepenjualModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content bg-light">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="deletepenjualModalLabel">Hapus Pembayaran</h5>
-                                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h4>Yakin ingin menghapus data?</h4>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                                                                <a href="<?= base_url() ?>panitia/p_lelang/delete/<?= $v['pelelang_id'] ?>" class="btn btn-danger">Ya</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </td>
                                         </tr>
                                     <?php } ?>

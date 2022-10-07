@@ -56,7 +56,7 @@
                                             <td><?= $row->keterangan ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editMenuModal<?= $row->peserta_id ?>"><i class="mdi mdi-file-document-edit"></i> Ubah</a>
-                                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusPesertaModal<?= $row->peserta_id ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
+                                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletepenjualModal<?= $row->peserta_id ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
                                                 </a>
                                             </td>
                                             <!-- Edit Menu Modal -->
@@ -87,12 +87,6 @@
                                                                             <div class="input-group mb-3">
                                                                                 <input type="text" class="form-control" name="username" id="username" value="<?= $row->panitia_id ?>" aria-describedby="basic-addon3" readonly>
                                                                             </div>
-                                                                            <label for="basic-url">Bukti Pembayaran</label><br>
-                                                                            <div class="input-group mb-3">
-                                                                                <img src="<?= base_url('vendors/uploads/panitia/' . $row->bukti_pembayaran) ?>" class="img-thumbnail thumbnail zoom" width="224px" alt="File KTP <?= $row->bukti_pembayaran ?>">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
                                                                             <label for="basic-url">Tanggal Deposit</label>
                                                                             <div class="input-group mb-3">
                                                                                 <input type="text" class="form-control" name="nik" id="nik" value="<?= $row->tgl_deposit ?>" aria-describedby="basic-addon3" readonly>
@@ -101,6 +95,10 @@
                                                                             <label for="basic-url">Nominal Deposit</label>
                                                                             <div class="input-group mb-3">
                                                                                 <input type="text" class="form-control" name="telp" id="telp" value="<?= $row->nominal_deposit ?>" aria-describedby="basic-addon3" readonly>
+                                                                            </div>
+                                                                            <label for="basic-url">Bukti Pembayaran</label><br>
+                                                                            <div class="input-group mb-3">
+                                                                                <img src="<?= base_url('vendors/uploads/panitia/' . $row->bukti_pembayaran) ?>" class="img-thumbnail thumbnail zoom" width="224px" alt="File KTP <?= $row->bukti_pembayaran ?>">
                                                                             </div>
                                                                             <label for="basic-url">Status Verifikasi</label><br>
                                                                             <div class="input-group mb-3">
@@ -112,7 +110,9 @@
                                                                                                                             echo 'Terverifikasi';
                                                                                                                         } else if ($row->status == 2) {
                                                                                                                             echo 'Ditolak';
-                                                                                                                        }else {
+                                                                                                                        } else if ($row->status == 3) {
+                                                                                                                            echo 'Dibanned';
+                                                                                                                        } else {
                                                                                                                             echo 'Status Tidak Diketahui';
                                                                                                                         }
                                                                                                                         ?></option>
@@ -134,27 +134,6 @@
                                                 </div>
                                                 </form>
                                             </div>
-                                            <!-- Modal Delete -->
-                                            <div class="modal fade" id="hapusPesertaModal<?= $row->peserta_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data Peserta Deposit</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <span>Yakin ingin hapus data?</span>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                                                            <a href="<?= base_url('panitia/deposit/delete/' . $row->peserta_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Modal Delete -->
                         </div>
                         </td>
                         </tr>
@@ -167,3 +146,24 @@
         </div>
     </div>
 </div>
+<!-- Modal Delete -->
+<div class="modal fade" id="hapusPesertaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span>Yakin ingin hapus data?</span>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <a href="<?= base_url() ?>panitia/deposit/<?= $row->peserta_id ?>" class="btn btn-danger">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Delete -->

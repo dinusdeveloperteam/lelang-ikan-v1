@@ -17,7 +17,7 @@ class M_pemenang extends CI_Model
     {
         return $this->db->get_where('panitia', ['panitia_id' => $name])->row();
     }
-    public function delete($lelang_id)
+    public function deletepemenang($lelang_id)
     {
         return $this->db->delete('lelang_pemenang', ['lelang_id' => $lelang_id]);
     }

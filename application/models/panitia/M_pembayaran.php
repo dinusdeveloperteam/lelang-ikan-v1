@@ -11,7 +11,7 @@ function pembayaran()
         return $this->db->query($query)->result_array();
     }
 
-    public function delete($lelang_id)
+    public function deletePembayaran($lelang_id)
     {
         return $this->db->delete('lelang_pembayaran', ['lelang_id' => $lelang_id]);
     }

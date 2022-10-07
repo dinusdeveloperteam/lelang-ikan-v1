@@ -34,7 +34,7 @@
                         <a class="nav-link" href="<?= base_url('panitia/peserta') ?>">Peserta Lelang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('panitia/pembukaanlelang') ?>">Pembukaan & Penawaran</a>
+                        <a class="nav-link" href="<?= base_url('panitia/Pembukaanlelang') ?>">Pembukaan & Penawaran</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('panitia/pemenang') ?>">Pemenang Lelang</a>
@@ -77,27 +77,28 @@
             </div>
         </li>
         <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#pengiriman" aria-expanded="false" aria-controls="ui-basic1">
+            <a class="nav-link" href="<?= base_url('panitia/pengiriman') ?>">
                 <span class="menu-title">Pengiriman</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-truck-delivery menu-icon"></i>
             </a>
-            <div class="collapse" id="pengiriman">
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#riwayat" aria-expanded="false" aria-controls="ui-basic1">
+                <span class="menu-title">Riwayat</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-wallet menu-icon"></i>
+            </a>
+            <div class="collapse" id="riwayat">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('panitia/suratpengiriman') ?>">Surat Perintah</a>
+                        <a class="nav-link" href="<?= base_url('panitia/riwayatbid') ?>">Riwayat Bid</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('panitia/pengiriman') ?>">Pengemasan</a>
+                        <a class="nav-link" href="<?= base_url('panitia/riwayat') ?>">Riwayat Lelang</a>
                     </li>
                 </ul>
             </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('panitia/riwayat') ?>">
-                <span class="menu-title">Riwayat Lelang</span>
-                <i class="mdi mdi-equal-box menu-icon"></i>
-            </a>
         </li>
     </ul>
 </nav>

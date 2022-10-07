@@ -1,62 +1,62 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Suratpengiriman extends CI_Controller
+class Pengiriman extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('panitia/M_suratperintah');
+        $this->load->model('panitia/M_pengiriman');
         $this->load->helper('url');
     }
     public function index()
     {
 
-        $TampilData = $this->M_suratperintah->suratperintah();
-        $page = 'Surat Perintah Pengiriman';
+        $TampilData = $this->M_pengiriman->suratperintah();
+        $page = 'Pengiriman Dan Pengemasan';
         $data = [
             'suratperintah' => $TampilData,
             'title' => $page,
             'breadcrumb' => $page
         ];
        
-        $data['user'] = $this->M_suratperintah->user_panitiaById($this->session->panitia_id);
+        $data['user'] = $this->M_pengiriman->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
-        $this->load->view('panitia/kelola_lelang/suratpengiriman', $data);
+        $this->load->view('panitia/kelola_lelang/pengiriman', $data);
         $this->load->view('panitia/partials/end');
     }
 
     //Fungsi Delete
     public function delete($pengiriman_id)
     {
-        $this->M_suratperintah->delete($pengiriman_id);
-        redirect('panitia/suratpengiriman/');
+        $this->M_pengiriman->deletePengiriman($pengiriman_id);
+        redirect('panitia/pengiriman/');
     }
     
+    //Fungsi Edit
     public function edit($id)
     {
-        $id = $this->uri->segment(4);
-        $this->form_validation->set_rules('status_transaksi', 'status_transaksi', 'required');
-
+        $this->form_validation->set_rules('status_transaksi', 'Status Order', 'required');
         if ($this->form_validation->run() == false) {
-            redirect('panitia/suratpengiriman/');
+            redirect('panitia/pengiriman/');
         } else {
             $this->db->set('status_transaksi', $this->input->post('status_transaksi', true));
-            $this->db->where('pengiriman_id', $id);
+            $this->db->where('lelang_id', $id);
             $this->db->update('lelang_pengiriman');
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
+            redirect('panitia/pengiriman/');
         }
-        redirect('panitia/suratpengiriman/');
+
     }
 
     //Fungsi Kirim Email
     public function VerifyEmail(){
-        if ($this->M_suratperintah->sendEmail($this->input->post('email')))
+        if ($this->M_pengiriman->sendEmail($this->input->post('email')))
         {
             // successfully sent mail
             $this->session->set_flashdata('msg','<script>alert("Success terkirim")</script>');
             
-            redirect('panitia/suratpengiriman'); 
+            redirect('panitia/pengiriman'); 
            
         }
         else
@@ -64,7 +64,7 @@ class Suratpengiriman extends CI_Controller
             // error
             $this->session->set_flashdata('msg','<script>alert("Gagal Terkirim")</script>');
             
-            redirect('panitia/suratpengiriman');
+            redirect('panitia/pengiriman');
 
             
         }

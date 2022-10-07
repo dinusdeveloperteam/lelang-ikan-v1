@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-class Pembukaanlelang extends CI_Controller
+class Riwayatbid extends CI_Controller
 {
     function __construct()
     {
@@ -26,18 +26,11 @@ class Pembukaanlelang extends CI_Controller
 
         $data['user'] = $this->M_pembukaanlelang->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
-        $this->load->view('panitia/kelola_lelang/pembukaanlelang', $data);
+        $this->load->view('panitia/riwayat_bid/index', $data);
         $this->load->view('panitia/partials/end');
     }
 
 
-    //Fungsi Delete
-    public function deletecalonpemenang($id)
-    {
-        $this->panitia->deletecalonpemenang($id);
-
-        redirect('panitia/kelola_lelang/pembukaanlelang');
-    }
 
     //Fungsi Edit
     public function edit()
@@ -47,14 +40,14 @@ class Pembukaanlelang extends CI_Controller
         $this->form_validation->set_rules('konfirmasi_terimaproduk', 'Status Order', 'required');
 
         if ($this->form_validation->run() == false) {
-            redirect('panitia/pembukaanlelang/');
+            redirect('panitia/riwayatbid/');
         } else {
             $this->db->set('status', $this->input->post('status', true));
             $this->db->where('peserta_id');
             $this->db->update('lelang_bid');
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
         }
-        redirect('panitia/pembukaanlelang/');
+        redirect('panitia/riwayatbid/');
     }
 
     public function detail()
@@ -63,7 +56,7 @@ class Pembukaanlelang extends CI_Controller
         $id = $this->uri->segment(4);
         $TampilData = $this->M_pembukaanlelang->calonpemenangByLelang($id);
         $maxhargatawar = $this->M_pembukaanlelang->Getmaxhargatawar($id);
-        $page = 'List Penawaran Dan Calon Pemenang';
+        $page = 'Riwayat Bid';
         $lelang = $this->M_pembukaanlelang->getById($id);
         $data = [
             'penawaranlelang' => $TampilData,
@@ -76,7 +69,7 @@ class Pembukaanlelang extends CI_Controller
 
         $data['user'] = $this->M_pembukaanlelang->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
-        $this->load->view('panitia/kelola_lelang/penawaranlelang', $data);
+        $this->load->view('panitia/riwayat_bid/detail', $data);
         $this->load->view('panitia/partials/end');
     }
 

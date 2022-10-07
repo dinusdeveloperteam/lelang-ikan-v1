@@ -88,7 +88,7 @@
                             <div class="col-12 grid-margin">
                                 <div class="card">
                                     <div class="card-body shadow-sm rounded">
-                                        <h3>List Penawaran</h3>
+                                        <h3>List Riwayat Bid</h3>
                                         <div class="table-responsive">
                                             <table id="tablecalonpemenang" class="table table-striped table-bordered" style="width:100%">
                                                 <thead>
@@ -98,7 +98,6 @@
                                                         <th>ID Peserta</th>
                                                         <th>Harga Tawar</th>
                                                         <th>Tanggal Bid</th>
-                                                        <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -112,23 +111,6 @@
                                                             <td><?= $row['peserta_id'] ?></td>
                                                             <td><?= $row['harga_tawar'] ?></td>
                                                             <td><?= $row['tgl_bid'] ?></td>
-                                                            <td>
-                                                                <?php
-                                                                if ($no == 1) {
-                                                                    echo '<form action="' . base_url('panitia/pembukaanlelang/update/' . $row['lelang_id']) . '" method="post" class="d-inline">';
-
-                                                                    echo '<input type="hidden" name="lelang_id" value="' . $row['lelang_id'] . '">';
-
-                                                                    echo '<input type="hidden" name="peserta_id" value="' . $row['peserta_id'] . '">';
-
-
-                                                                    echo '<button  type="submit" class="btn btn-sm btn-success mr-2"><i class="fas fa-check-circle" aria-hidden="true"></i><small>Konfirmasi</small></button>';
-
-
-                                                                    echo '</form>';
-                                                                }
-                                                                ?>
-                                                            </td>
                                                         </tr>
                                                         <?php $no++; ?>
                                                     <?php

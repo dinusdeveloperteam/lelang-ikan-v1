@@ -1,19 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_suratperintah extends CI_Model
+class M_pengiriman extends CI_Model
 {
     //Fungsi Index
     function suratperintah()
     {
-        $query = "SELECT lpg.*,lp.*,p.* FROM lelang_pengiriman lpg,lelang_pemenang lp,peserta p WHERE lpg.lelang_id=lp.lelang_id AND lp.peserta_id=p.peserta_id";
+        $query = "SELECT lpg.*,lp.*,p.* FROM lelang_pengiriman lpg,lelang_pemenang lp,peserta p WHERE lpg.lelang_id=lp.lelang_id=p.peserta_id";
         return $this->db->query($query)->result_array();
     }
 
     //Fungsi Delete
-    public function delete($pengiriman_id)
+    public function deletePengiriman($lelang_id)
     {
-        return $this->db->delete('lelang_pengiriman', ['pengiriman_id' => $pengiriman_id]);
+        return $this->db->delete('lelang_pengiriman', ['pengiriman_id' => $lelang_id]);
     }
 
     //Session Data

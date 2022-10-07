@@ -30,7 +30,7 @@ class Pembayaran extends CI_Controller
     //Fungsi Delete
     public function delete($lelang_id)
     {
-        $this->M_pembayaran->delete($lelang_id);
+        $this->Panitia->deletePembayaran($lelang_id);
         redirect('panitia/pembayaran');
     }
 

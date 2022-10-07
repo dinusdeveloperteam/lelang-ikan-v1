@@ -11,7 +11,7 @@ class M_pelelang
         $query = $this->db->get('pelelang');
         return $query->result();
     }
-    public function delete($pelelang_id)
+    public function hapusDataPelelang($pelelang_id)
     {
         return $this->db->delete('pelelang', ['pelelang_id' => $pelelang_id]);
     }
