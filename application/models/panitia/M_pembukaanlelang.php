@@ -34,9 +34,9 @@ class M_pembukaanlelang extends CI_Model
     {
         return $this->db->get_where('panitia', ['panitia_id' => $name])->row();
     }
-    public function deletecalonpemenang($id)
+    public function deletePembukaanLelang($lelang_id)
     {
-        return $this->db->delete('lelang', ['lelang_id' => $id]);
+        return $this->db->delete('lelang', ['lelang_id' => $lelang_id]);
     }
     public function getById($id)
     {

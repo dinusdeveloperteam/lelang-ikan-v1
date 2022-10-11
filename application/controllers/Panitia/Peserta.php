@@ -28,23 +28,22 @@ class Peserta extends CI_Controller
     }
 
     //Fungsi Edit
-    public function edit($id)
+    public function verifikasi($peserta_id)
     {
-        $id = $this->uri->segment(4);
+        $peserta_id = $this->uri->segment(4);
         $data = [
-            'status' => $this->input->post('status'),'jeniskel' => $this->input->post('jeniskel')
-        ];
-        $this->db->set('jeniskel', $this->input->post('jeniskel', true));
-        $this->db->where('peserta_id', $id);
+            'status' => $this->input->post('status')];
+        $this->db->set('status', $this->input->post('status', true));
+        $this->db->where('peserta_id', $peserta_id);
         $this->db->update('peserta', $data);
         redirect('panitia/peserta');
     }
 
 
     //Fungsi Delete
-    public function hapusPeserta($peserta_id)
+    public function delete($peserta_id)
     {
-        $this->Panitia->hapusDataPeserta($peserta_id);
+        $this->M_peserta->deletePeserta($peserta_id);
         redirect('panitia/peserta');
     }
 }

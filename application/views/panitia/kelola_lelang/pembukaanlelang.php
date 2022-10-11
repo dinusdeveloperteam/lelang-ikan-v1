@@ -37,43 +37,55 @@
                                     ?>
                                         <td><?= $count ?></td>
                                         <td><?= $row['nama'] ?></td>
-                                                    <td><?= $row['produk'] ?></td>
+                                        <td><?= $row['produk'] ?></td>
 
-                                                    <td><img src="<?= base_url('assets/uploads/produk/') . $row['image1']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
-                                                    <td><img src="<?= base_url('assets/uploads/produk/') . $row['image2']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
-                                                    <td><img src=" <?= base_url('assets/uploads/produk/') . $row['image3']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
-                                                    <td><img src=" <?= base_url('assets/uploads/produk/') . $row['image4']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
-                                                    <td>Rp <?= number_format($row['harga_awal']) ?></td>
-                                                    <td>Rp <?= number_format($row['harga_minimal_diterima']) ?></td>
-                                                    <td>Rp <?= number_format($row['incremental_value']) ?></td>
-                                                    <td><?= $row['tgl_mulai'] ?></td>
-                                                    <td><?= $row['tgl_selesai'] ?></td>
-                                            <td>
-                                            <a href="<?= base_url(); ?>panitia/pembukaanlelang/detail/<?= $row['lelang_id']; ?>" class="btn btn-sm btn-info mr-2"><i class="fa fa-info-circle"></i>Detail</a>
-                                            <a href="<?= base_url(); ?>panitia/pembukaanlelang/deletecalonpemenang/<?= $row['lelang_id']; ?>" class="btn btn-sm btn-danger mr-2"><i class="fa fa-info-circle"></i>Hapus</a>
+                                        <td><img src="<?= base_url('assets/uploads/produk/') . $row['image1']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
+                                        <td><img src="<?= base_url('assets/uploads/produk/') . $row['image2']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
+                                        <td><img src=" <?= base_url('assets/uploads/produk/') . $row['image3']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
+                                        <td><img src=" <?= base_url('assets/uploads/produk/') . $row['image4']; ?>" alt="Gambar Ikan" width="75px" height="75px" class="zoom"></td>
+                                        <td>Rp <?= number_format($row['harga_awal']) ?></td>
+                                        <td>Rp <?= number_format($row['harga_minimal_diterima']) ?></td>
+                                        <td>Rp <?= number_format($row['incremental_value']) ?></td>
+                                        <td><?= $row['tgl_mulai'] ?></td>
+                                        <td><?= $row['tgl_selesai'] ?></td>
+                                        <td>
+                                            <a href="<?= base_url('panitia/pembukaanlelang/detail/' . $row['lelang_id']) ?>">
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Detail">
+                                                    <i class="mdi mdi-information-outline"></i>
+                                                </button>
+                                            </a>
+                                            <a href="" data-toggle="modal" data-target="#deletePembukaanLelangModal<?= $row['lelang_id'] ?>">
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Hapus">
+                                                    <i class="mdi mdi-delete-outline"></i>
+                                                </button>
+                                            </a>
                                         </td>
-                                        <!-- Edit Menu Modal -->
 
-
-
-                                        <div class="modal fade" id="deletepenjualModal<?= $row['lelang_id'] ?>" tabindex="-1" aria-labelledby="deletepenjualModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content bg-light">
+                                        <!-- Modal Delete -->
+                                        <div class="modal fade" id="deletePembukaanLelangModal<?= $row['lelang_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content bg-white">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deletepenjualModalLabel">Konfirmasi Calon Pemenang</h5>
-                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Pembukaan Lelang</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h4>Apakah Data Sudah Benar?</h4>
+                                                        <span>Yakin ingin hapus data?</span>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                                                        <a href="<?= base_url() ?>panitia/pembukaanlelang/update/<?= $row['lelang_id'] . "/" . $row['peserta_id'] ?>" class="btn btn-danger">Ya</a>
+                                                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                                                        <a href="<?= base_url('panitia/pembukaanlelang/delete/' . $row['lelang_id']) ?>" class="btn btn-danger btn-sm">
+                                                            <i class="mdi mdi-delete-outline"></i>
+                                                            <span>Hapus</span>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        </td>
+                                        <!-- End Modal Delete -->
+
                                         </tr>
                                     <?php } ?>
                                 </tbody>

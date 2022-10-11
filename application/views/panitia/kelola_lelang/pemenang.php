@@ -20,7 +20,7 @@
                                         <th>Nama produk</th>
                                         <th>Tanggal Diumumkan</th>
                                         <th>Status Pembayaran</th>
-                                        <th>Status</th>
+                                        <th>Status Terima Produk</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -49,61 +49,97 @@
                                             }
                                             ?>
                                             <td><?= $statusPembayaran ?></td>
-                                            <td>q</td>
+                                            <?php
+                                            $konfirm = $row->konfirmasi_terimaproduk;
+                                            if ($konfirm == 0) {
+                                                $statusTerimaProduk = "<span class='badge badge-secondary'>Belum diterima</span>";
+                                            } else if ($konfirm == 1) {
+                                                $statusTerimaProduk = "<span class='badge badge-success'>Telah diterima</span>";
+                                            } else if ($konfirm == 2) {
+                                                $statusTerimaProduk = "<span class='badge badge-danger'>Ditolak</span>";
+                                            } else {
+                                                $statusTerimaProduk = "<span class='badge badge-warning'>Unknown</span>";
+                                            }
+                                            ?>
+                                            <td><?= $statusTerimaProduk ?></td>
                                             <td>
-                                                <div style="">
-                                                    <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editMenuModal<?= $row->peserta_id ?>"><i class="mdi mdi-check-circle"></i> Verifikasi</a>
-                                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletepenjualModal<?= $row->peserta_id ?>"><i class="mdi mdi-delete-forever"></i> Hapus</a>
-                                                    <a href="<?= base_url(); ?>panitia/suratpengiriman/update/<?= $row->lelang_id; ?>" class="btn btn-sm btn-info mr-2"><i class="fa fa-info-circle"></i>Pengiriman</a>
+                                                <div class="action">
+                                                    <a href="" data-toggle="modal" data-target="#verifikasiPemenangModal<?= $row->peserta_id ?>">
+                                                        <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Verifikasi">
+                                                            <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="" data-toggle="modal" data-target="#deletePemenangModal<?= $row->peserta_id ?>">
+                                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Hapus">
+                                                            <i class="mdi mdi-delete-outline"></i>
+                                                        </button>
+                                                    </a>
                                                 </div>
-                                                <!-- Edit Menu Modal -->
-                                                <div class="modal fade" id="editMenuModal<?= $row->peserta_id ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
-                                                    <div class="modal-dialog modal-xl">
-                                                        <div class="modal-content bg-default">
-                                                            <div class="modal-header bg-white">
-                                                                <h5 class="modal-title font-weight-bold" id="editOrderModal">Verifikasi Pemenang Lelang</h5>
+
+                                                <!-- Verifikasi Pemenang Modal -->
+                                                <div class="modal fade" id="verifikasiPemenangModal<?= $row->peserta_id ?>" tabindex="-1" role="dialog" aria-labelledby="pemenangModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content bg-white">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="pemenangModalLabel">Verifikasi Pemenang Lelang</h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body text-dark font-weight-bold bg-white">
-                                                                <form action="<?= base_url('panitia/pemenang/detail/') . $row->lelang_id ?>" method="post">
-                                                                    <div class="input-group">
+                                                            <form action="<?= base_url('panitia/pemenang/verifikasi/' . $row->peserta_id) ?>" method="POST">
+                                                                <div class="modal-body">
+                                                                    <!-- Verfikasi Pembayaran -->
+                                                                    <label for="basic-url">Verifikasi Pembayaran</label><br>
+                                                                    <div class="input-group mb-3 mt-3">
                                                                         <select class="custom-select" name="status" id="status">
-                                                                            <option value="<?= $row->status ?>">
-                                                                                <?php
-                                                                                if ($row->status == 0) {
-                                                                                    echo 'Belum dibayar';
-                                                                                } else if ($row->status == 1) {
-                                                                                    echo 'Telah dibayar';
-                                                                                } else if ($row->status == 2) {
-                                                                                    echo 'Ditolak';
-                                                                                } else {
-                                                                                    echo 'Unknown';
-                                                                                }
-                                                                                ?>
-                                                                            </option>
+                                                                            <option value="<?= $row->status ?>"><?php
+                                                                                                                if ($row->status == 0) {
+                                                                                                                    echo 'Belum dibayar';
+                                                                                                                } else if ($row->status == 1) {
+                                                                                                                    echo 'Telah dibayar';
+                                                                                                                } else if ($row->status == 2) {
+                                                                                                                    echo 'Ditolak';
+                                                                                                                } else {
+                                                                                                                    echo 'Null';
+                                                                                                                }
+                                                                                                                ?></option>
                                                                             <option value="0">Belum dibayar</option>
                                                                             <option value="1">Telah dibayar</option>
                                                                             <option value="2">Ditolak</option>
                                                                         </select>
                                                                     </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                                                </form>
-                                                            </div>
+                                                                    <!-- End Verifikasi Pembayaran -->
+
+                                                                    <!-- Verifikasi Terima Produk -->
+                                                                    <label for="basic-url">Verifikasi Terima Produk</label><br>
+                                                                    <div class="input-group mb-3 mt-3">
+                                                                        <select class="custom-select" name="konfirmasi_terimaproduk" id="konfirmasi_terimaproduk">
+                                                                            <option value="<?= $row->konfirmasi_terimaproduk ?>"><?php
+                                                                                                                                    if ($row->konfirmasi_terimaproduk == 0) {
+                                                                                                                                        echo 'Belum diterima';
+                                                                                                                                    } else if ($row->konfirmasi_terimaproduk == 1) {
+                                                                                                                                        echo 'Telah diterima';
+                                                                                                                                    } else {
+                                                                                                                                        echo 'Null';
+                                                                                                                                    }
+                                                                                                                                    ?></option>
+                                                                            <option value="0">Belum diterima</option>
+                                                                            <option value="1">Telah diterima</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <!-- End Verifikasi Terima Produk -->
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-sm btn-success">
+                                                                        <i class="mdi mdi-content-save"></i>
+                                                                        <span>Simpan</span>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- untuk kirim email
-                                                <div class="modal fade" id="notifEmail" tabindex="-1" role="dialog" aria-labelledby="loginpelelangLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                    <a href="<?= base_url(); ?>panitia/pembukaanlelang/detail/<?= $row->lelang_id; ?>" class="btn btn-sm btn-success mr-2"><i class="fa fa-info-circle"></i>Pengiriman</a>
-                                                    </div>
-                                                </div> -->
-                                                <!-- End Detail -->
+                                                <!-- End Verifikasi Pemenang Modal -->
 
                                                 <!-- Modal Hapus -->
                                                 <div class="modal fade" id="deletepenjualModal<?= $row->peserta_id ?>" tabindex="-1" aria-labelledby="deletepenjualModalLabel" aria-hidden="true">
@@ -118,7 +154,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                                                                <a href="<?= base_url() ?>panitia/pemenang/deletepemenang/<?= $row->lelang_id ?>" class="btn btn-danger">Ya</a>
+                                                                <a href="<?= base_url() ?>panitia/pemenang/deletepemenang/<?= $row->peserta_id ?>" class="btn btn-danger">Ya</a>
                                                             </div>
                                                         </div>
                                                     </div>

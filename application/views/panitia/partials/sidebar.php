@@ -34,7 +34,7 @@
                         <a class="nav-link" href="<?= base_url('panitia/peserta') ?>">Peserta Lelang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('panitia/Pembukaanlelang') ?>">Pembukaan & Penawaran</a>
+                        <a class="nav-link" href="<?= base_url('panitia/pembukaanlelang') ?>">Pembukaan & Penawaran</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('panitia/pemenang') ?>">Pemenang Lelang</a>

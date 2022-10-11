@@ -26,21 +26,24 @@ class Pelelang extends CI_Controller
         $this->load->view('panitia/partials/end');
     }
 
-    //Fungsi Edit
-    public function edit($id)
+    // Fungsi Verifikasi
+
+    public function verifikasi($pelelang_id)
     {
-        $id = $this->uri->segment(4);
+        $pelelang_id = $this->uri->segment(4);
         $data = [
             'status' => $this->input->post('status')
         ];
-        $this->db->where('pelelang_id', $id);
+        $this->db->where('pelelang_id', $pelelang_id);
         $this->db->update('pelelang', $data);
         redirect('panitia/pelelang');
     }
+
     //Fungsi Delete
-    public function hapusPelelang($id)
+
+    public function delete($pelelang_id)
     {
-        $this->Panitia->hapusDataPelelang($id);
+        $this->M_pelelang->deletePelelang($pelelang_id);
         redirect('panitia/pelelang');
     }
 }

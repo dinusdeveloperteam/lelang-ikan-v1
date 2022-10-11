@@ -39,6 +39,20 @@ class Pemenang extends CI_Controller
         redirect('panitia/pemenang');
     }
 
+    // Fungsi Verifikasi Pembayaran
+
+    public function verifikasi($peserta_id)
+    {
+        $peserta_id = $this->uri->segment(4);
+        $data = [
+            'status' => $this->input->post('status'),
+            'konfirmasi_terimaproduk' => $this->input->post('konfirmasi_terimaproduk')
+        ];
+        $this->db->where('peserta_id', $peserta_id);
+        $this->db->update('lelang_pemenang', $data);
+        redirect('panitia/pemenang');
+    }
+
     //Fungsi Edit
     public function edit()
     {
@@ -89,5 +103,4 @@ class Pemenang extends CI_Controller
         $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Data Terupdate!</div>');
         redirect('panitia/suratperintah/');
     }
-    
 }

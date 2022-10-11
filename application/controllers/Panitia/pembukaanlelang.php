@@ -32,11 +32,11 @@ class Pembukaanlelang extends CI_Controller
 
 
     //Fungsi Delete
-    public function deletecalonpemenang($id)
+    public function delete($lelang_id)
     {
-        $this->panitia->deletecalonpemenang($id);
+        $this->M_pembukaanlelang->deletePembukaanLelang($lelang_id);
 
-        redirect('panitia/kelola_lelang/pembukaanlelang');
+        redirect('panitia/pembukaanlelang');
     }
 
     //Fungsi Edit
