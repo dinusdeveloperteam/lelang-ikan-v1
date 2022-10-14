@@ -12,6 +12,9 @@ class Pemenang extends CI_Controller
         $this->load->library(array('session', 'form_validation', 'email'));
         $this->load->database();
     }
+
+    // Menampilkan Data Pemenang Lelang
+
     public function index()
     {
 
@@ -30,15 +33,6 @@ class Pemenang extends CI_Controller
         $this->load->view('panitia/partials/end');
     }
 
-
-    //Fungsi Delete
-    public function deletepemenang($id)
-    {
-        $this->M_pemenang->deletepemenang($id);
-
-        redirect('panitia/pemenang');
-    }
-
     // Fungsi Verifikasi Pembayaran
 
     public function verifikasi($peserta_id)
@@ -53,7 +47,8 @@ class Pemenang extends CI_Controller
         redirect('panitia/pemenang');
     }
 
-    //Fungsi Edit
+    // Edit Data Status & Konfirmasi Terima Produk 
+
     public function edit()
     {
 
@@ -72,7 +67,8 @@ class Pemenang extends CI_Controller
         redirect('panitia/pemenang/');
     }
 
-    // update status
+    // Update Data Status Pemenang Lelang 
+    
     public function detail($id)
     {
         $this->form_validation->set_rules('status', 'Status Order', 'required');
@@ -86,6 +82,9 @@ class Pemenang extends CI_Controller
             redirect('panitia/pemenang/');
         }
     }
+
+    // Update Data Surat Perintah
+
     public function update($id)
     {
         $lelangbid = $this->M_suratperintah->suratperintah($id);
@@ -102,5 +101,14 @@ class Pemenang extends CI_Controller
         $this->db->insert('lelang_pengiriman', $data);
         $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Data Terupdate!</div>');
         redirect('panitia/suratperintah/');
+    }
+
+    // Hapus Data Pemenang Lelang
+
+    public function deletepemenang($id)
+    {
+        $this->M_pemenang->deletepemenang($id);
+
+        redirect('panitia/pemenang');
     }
 }

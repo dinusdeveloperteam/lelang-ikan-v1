@@ -9,6 +9,8 @@ class Dashboard extends CI_Controller
         $this->load->model('panitia/Panitia');
         $this->load->helper('url');
     }
+     // Menampilkan Halaman Utama Panitia Lelang
+     
     public function index()
     {
         $page = 'Dashboard';

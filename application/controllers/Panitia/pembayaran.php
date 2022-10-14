@@ -9,6 +9,9 @@ class Pembayaran extends CI_Controller
         $this->load->model('panitia/M_pembayaran');
         $this->load->helper('url');
     }
+
+    // Menampilkan Data Pembayaran
+
     public function index()
     {
 
@@ -20,22 +23,15 @@ class Pembayaran extends CI_Controller
             'breadcrumb' => $page
         ];
 
-       
+
         $data['user'] = $this->M_pembayaran->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/pembayaran', $data);
         $this->load->view('panitia/partials/end');
-    }        
-
-    //Fungsi Delete
-    public function delete($lelang_id)
-    {
-        $this->Panitia->deletePembayaran($lelang_id);
-        redirect('panitia/pembayaran');
     }
 
+    // Edit Data Pembayaran
 
-    //Fungsi Edit
     public function edit($id)
     {
         $this->form_validation->set_rules('status', 'Status Order', 'required');
@@ -49,5 +45,13 @@ class Pembayaran extends CI_Controller
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Order Berhasil Terupdate!</div>');
             redirect('panitia/pembayaran/');
         }
+    }
+
+    // Menghapus Data Pembayaran
+
+    public function delete($lelang_id)
+    {
+        $this->Panitia->deletePembayaran($lelang_id);
+        redirect('panitia/pembayaran');
     }
 }

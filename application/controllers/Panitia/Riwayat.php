@@ -9,6 +9,9 @@ class Riwayat extends CI_Controller
         $this->load->model('panitia/M_riwayat');
         $this->load->helper('url');
     }
+
+    // Menampilkan Data Riwayat Lelang
+
     public function index()
     {
 
@@ -19,7 +22,7 @@ class Riwayat extends CI_Controller
             'title' => $page,
             'breadcrumb' => $page
         ];
-       
+
         $data['user'] = $this->M_riwayat->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/riwayat', $data);

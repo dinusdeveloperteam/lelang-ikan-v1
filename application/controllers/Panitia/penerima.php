@@ -9,6 +9,9 @@ class Penerima extends CI_Controller
         $this->load->model('panitia/M_penerima');
         $this->load->helper('url');
     }
+
+    // Menampilkan Data Penerima Lelang
+
     public function index()
     {
 
@@ -19,15 +22,15 @@ class Penerima extends CI_Controller
             'title' => $page,
             'breadcrumb' => $page
         ];
-       
+
         $data['user'] = $this->M_penerima->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/penerima', $data);
         $this->load->view('panitia/partials/end');
     }
 
+    // Verifikasi Data Pemenang Lelang
 
-    //Fungsi Verifikasi
     public function verifikasi($id)
     {
         $this->form_validation->set_rules('konfirmasi_terimaproduk', 'Status Order', 'required');
@@ -41,10 +44,10 @@ class Penerima extends CI_Controller
             var_dump($this->db->last_query());
             redirect('panitia/penerima/');
         }
-
     }
 
-    //Fungsi Delete
+    // Hapus Data Pemenang Lelang
+
     public function delete($peserta_id)
     {
         $this->M_penerima->deletePenerima($peserta_id);

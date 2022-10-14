@@ -9,6 +9,9 @@ class HasilLelang extends CI_Controller
         $this->load->model('panitia/M_HasilLelang');
         $this->load->helper('url');
     }
+
+    // Menampilkan Data Hasil Lelang
+
     public function index()
     {
 
@@ -27,15 +30,8 @@ class HasilLelang extends CI_Controller
         $this->load->view('panitia/partials/end');
     }
 
-    //Fungsi Delete
-    // public function delete($lelang_id)
-    // {
-    //     $this->Panitia->deletePembayaran($lelang_id);
-    //     redirect('panitia/pembayaran');
-    // }
+    // Edit Data Hasil Lelang
 
-
-    //Fungsi Edit
     public function halaman_edit($id)
     {
         $this->form_validation->set_rules('nominal_dibayarkan', 'Nominal Dibayarkan', 'required');

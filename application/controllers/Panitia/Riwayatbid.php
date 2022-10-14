@@ -12,6 +12,9 @@ class Riwayatbid extends CI_Controller
         $this->load->library(array('session', 'form_validation', 'email'));
         $this->load->database();
     }
+
+    // Menampilkan Data Riwayat Bid 
+
     public function index()
     {
 
@@ -30,9 +33,8 @@ class Riwayatbid extends CI_Controller
         $this->load->view('panitia/partials/end');
     }
 
+    // Edit Data Riwayat Bid
 
-
-    //Fungsi Edit
     public function edit()
     {
 
@@ -49,6 +51,8 @@ class Riwayatbid extends CI_Controller
         }
         redirect('panitia/riwayatbid/');
     }
+
+    // Menampikan Detail Riwayat Bid
 
     public function detail()
     {
@@ -74,7 +78,8 @@ class Riwayatbid extends CI_Controller
     }
 
 
-    // update status
+    // Update Data Lelang Pemenang 
+
     public function update($id)
     {
         $lelangbid = $this->M_pembukaanlelang->calonpemenangByLelanglimit1($id);

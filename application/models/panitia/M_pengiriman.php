@@ -3,26 +3,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_pengiriman extends CI_Model
 {
-    //Fungsi Index
+    // Menampilkan Data Relasi Surat Perintah
+
     function suratperintah()
     {
         $query = "SELECT lpg.*,lp.*,p.* FROM lelang_pengiriman lpg,lelang_pemenang lp,peserta p WHERE lpg.lelang_id=lp.lelang_id=p.peserta_id";
         return $this->db->query($query)->result_array();
     }
 
-    //Fungsi Delete
+    // Menghapus Data Pengiriman Lelang 
+
     public function deletePengiriman($lelang_id)
     {
         return $this->db->delete('lelang_pengiriman', ['pengiriman_id' => $lelang_id]);
     }
 
-    //Session Data
+    // Session Data Panitia Lelang
+
     function user_panitiaById($name)
     {
         return $this->db->get_where('panitia', ['panitia_id' => $name])->row();
     }
 
-    // Fungsi Kirim Email
+    // Mengirim Email
+
     function sendEmail($to_email)
     {
         $from_email = 'lelangikan222@gmail.com'; //change this to yours

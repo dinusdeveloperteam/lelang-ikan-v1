@@ -12,6 +12,9 @@ class Pembukaanlelang extends CI_Controller
         $this->load->library(array('session', 'form_validation', 'email'));
         $this->load->database();
     }
+
+    // Menampilkan Data Pembukaan Lelang
+
     public function index()
     {
 
@@ -30,16 +33,8 @@ class Pembukaanlelang extends CI_Controller
         $this->load->view('panitia/partials/end');
     }
 
+    // Edit Data Pembukaan Lelang
 
-    //Fungsi Delete
-    public function delete($lelang_id)
-    {
-        $this->M_pembukaanlelang->deletePembukaanLelang($lelang_id);
-
-        redirect('panitia/pembukaanlelang');
-    }
-
-    //Fungsi Edit
     public function edit()
     {
 
@@ -56,6 +51,8 @@ class Pembukaanlelang extends CI_Controller
         }
         redirect('panitia/pembukaanlelang/');
     }
+
+    // Menampilkan Detail Data Pembukaan Lelang
 
     public function detail()
     {
@@ -81,7 +78,8 @@ class Pembukaanlelang extends CI_Controller
     }
 
 
-    // update status
+    // Update Data Status Pembukaan Lelang
+
     public function update($id)
     {
         $lelangbid = $this->M_pembukaanlelang->calonpemenangByLelanglimit1($id);
@@ -97,5 +95,14 @@ class Pembukaanlelang extends CI_Controller
         $this->db->insert('lelang_pemenang', $data);
         $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Data Terupdate!</div>');
         redirect('panitia/pemenang/');
+    }
+
+    // Hapus Data Pembukaan Lelang
+
+    public function delete($lelang_id)
+    {
+        $this->M_pembukaanlelang->deletePembukaanLelang($lelang_id);
+
+        redirect('panitia/pembukaanlelang');
     }
 }

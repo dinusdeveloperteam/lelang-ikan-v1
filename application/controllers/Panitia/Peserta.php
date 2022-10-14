@@ -10,7 +10,8 @@ class Peserta extends CI_Controller
         $this->load->helper('url');
     }
 
-    //Fungsi Index
+    // Menampilkan Data Peserta Lelang
+
     public function index()
     {
         $TampilData = $this->M_peserta->peserta();
@@ -20,19 +21,21 @@ class Peserta extends CI_Controller
             'title' => $page,
             'breadcrumb' => $page
         ];
-       
+
         $data['user'] = $this->M_peserta->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/peserta', $data);
         $this->load->view('panitia/partials/end');
     }
 
-    //Fungsi Edit
+    // Verifikasi Data Pemenang Lelang
+
     public function verifikasi($peserta_id)
     {
         $peserta_id = $this->uri->segment(4);
         $data = [
-            'status' => $this->input->post('status')];
+            'status' => $this->input->post('status')
+        ];
         $this->db->set('status', $this->input->post('status', true));
         $this->db->where('peserta_id', $peserta_id);
         $this->db->update('peserta', $data);
@@ -40,7 +43,8 @@ class Peserta extends CI_Controller
     }
 
 
-    //Fungsi Delete
+    // Menghapus Data Peserta Lelang
+
     public function delete($peserta_id)
     {
         $this->M_peserta->deletePeserta($peserta_id);

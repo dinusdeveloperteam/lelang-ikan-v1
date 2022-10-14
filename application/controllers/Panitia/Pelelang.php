@@ -9,6 +9,9 @@ class Pelelang extends CI_Controller
         $this->load->model('panitia/M_pelelang');
         $this->load->helper('url');
     }
+
+    // Menampilkan Data Pelelang 
+
     public function index()
     {
 
@@ -19,14 +22,14 @@ class Pelelang extends CI_Controller
             'title' => $page,
             'breadcrumb' => $page
         ];
-       
+
         $data['user'] = $this->M_pelelang->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/pelelang', $data);
         $this->load->view('panitia/partials/end');
     }
 
-    // Fungsi Verifikasi
+    // Verifikasi Data Pelelang
 
     public function verifikasi($pelelang_id)
     {
@@ -39,7 +42,7 @@ class Pelelang extends CI_Controller
         redirect('panitia/pelelang');
     }
 
-    //Fungsi Delete
+    // Hapus Data Pelelang
 
     public function delete($pelelang_id)
     {

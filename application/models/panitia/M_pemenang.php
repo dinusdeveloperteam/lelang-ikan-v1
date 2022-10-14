@@ -3,6 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_pemenang extends CI_Model
 {
+    // Menampilkan Data Relasi Pemenang Lelang
+
     function pemenang()
     {
         $this->db->select('peserta.peserta_id,peserta.nik,peserta.npwp,peserta.nama,peserta.jeniskel, peserta.telp, peserta.email,lelang.produk,lelang_pemenang.tgl_diumumkan,lelang_pemenang.konfirmasi_terimaproduk,lelang_pemenang.status,lelang_pemenang.lelang_id,lelang_pemenang.bukti_bayar,lelang_pemenang.tgl_bayar,lelang_pemenang.alamat_kirim,lelang_pemenang.kota_kirim,lelang_pemenang.kelurahan_kirim,lelang_pemenang.kecamatan_kirim,lelang_pemenang.provinsi_kirim,lelang_pemenang.testimoni_pemenang');
@@ -13,10 +15,16 @@ class M_pemenang extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    // Session Data Panitia Lelang
+
     function user_panitiaById($name)
     {
         return $this->db->get_where('panitia', ['panitia_id' => $name])->row();
     }
+
+    // Menghapus Data Pemenang Lelang
+
     public function deletepemenang($peserta_id)
     {
         return $this->db->delete('lelang_pemenang', ['peserta_id' => $peserta_id]);
