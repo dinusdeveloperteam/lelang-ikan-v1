@@ -40,9 +40,9 @@
                                             <td><?= $v['nominal_dibayarkan'] ?></td>
                                             <td><img src="<?= base_url('vendors/uploads/panitia/buktitransfer') . $v['bukti_transfer']; ?>" alt="Bukti Transfer" width="75px" height="75px" class="zoom"></td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#editMenuModal<?= $v['pelelang_id'] ?>"><i class="fas fa-edit"></i>Detail</a>
+                                                <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailHasilLelangModal<?= $v['pelelang_id'] ?>"><i class="mdi mdi-information-outline"></i> Detail</a>
                                                 <!-- Edit Menu Modal -->
-                                                <div class="modal fade" id="editMenuModal<?= $v['pelelang_id'] ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
+                                                <div class="modal fade" id="detailHasilLelangModal<?= $v['pelelang_id'] ?>" tabindex="-1" aria-labelledby="editOrderModal" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl">
                                                         <div class="modal-content bg-default">
                                                             <div class="modal-header bg-white">

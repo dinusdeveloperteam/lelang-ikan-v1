@@ -12677,7 +12677,9 @@ dl {
     -webkit-transition: width 0.25s ease, background 0.25s ease;
     -moz-transition: width 0.25s ease, background 0.25s ease;
     -ms-transition: width 0.25s ease, background 0.25s ease;
-    background: #fff;
+    /* background: #fff;  default */
+    background: #13855c;
+    /* background-color:#005B5C;background-image:linear-gradient(80deg,#13855c 10%,#005B5C 100%);background-size:cover; */
     width: 260px;
     height: 70px; }
     @media (max-width: 991px) {

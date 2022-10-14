@@ -27,8 +27,8 @@ class Penerima extends CI_Controller
     }
 
 
-    //Fungsi Edit
-    public function edit($id)
+    //Fungsi Verifikasi
+    public function verifikasi($id)
     {
         $this->form_validation->set_rules('konfirmasi_terimaproduk', 'Status Order', 'required');
         if ($this->form_validation->run() == false) {
@@ -44,11 +44,10 @@ class Penerima extends CI_Controller
 
     }
 
-
     //Fungsi Delete
     public function delete($peserta_id)
     {
-        $this->Panitia->deletePenerima($peserta_id);
+        $this->M_penerima->deletePenerima($peserta_id);
         redirect('panitia/penerima');
     }
 }

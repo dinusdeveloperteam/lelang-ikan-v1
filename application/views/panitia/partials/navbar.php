@@ -1,8 +1,8 @@
-<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row shadow-sm">
-    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row shadow-sm bg-gradient-lelang2">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center bg-gradient-lelang2">
         <a class="navbar-brand brand-logo" href=""><img src="<?php echo base_url('vendors/adminassets/assets/images/logo/logo.png') ?>" alt="logo" style="width:50px; height:50px;" /></a>
     </div>
-    <div class="navbar-menu-wrapper d-flex align-items-stretch">
+    <div class="navbar-menu-wrapper d-flex align-items-stretch bg-gradient-lelang2">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
         </button>

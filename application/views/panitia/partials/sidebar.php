@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas fixed-left" id="sidebar">
+<nav class="sidebar sidebar-offcanvas fixed-left bg-gradient-lelang" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
             <a href="<?= base_url('dashboard.php') ?>" class="nav-link">

@@ -9,6 +9,9 @@ class Deposit extends CI_Controller
         $this->load->model('panitia/M_deposit');
         $this->load->helper('url');
     }
+
+    // Menampilkan Data Peserta Deposit
+    
     public function index()
     {
 
@@ -19,28 +22,31 @@ class Deposit extends CI_Controller
             'title' => $page,
             'breadcrumb' => $page
         ];
-       
+
         $data['user'] = $this->M_deposit->user_panitiaById($this->session->panitia_id);
         $this->load->view('panitia/partials/start', $data);
         $this->load->view('panitia/kelola_lelang/peserta_deposit', $data);
         $this->load->view('panitia/partials/end');
     }
 
-    //Fungsi Edit
-    public function edit($id)
+    // Verifikasi Peserta Deposit
+
+    public function verifikasi($id)
     {
         $id = $this->uri->segment(4);
         $data = [
             'status' => $this->input->post('status')
         ];
-        $this->db->where('peserta_deposit', $id);
+        $this->db->where('deposit_id', $id);
         $this->db->update('peserta_deposit', $data);
         redirect('panitia/deposit');
     }
-    // //Fungsi Delete
-    // public function hapusPelelang($id)
-    // {
-    //     $this->Panitia->hapusDataPelelang($id);
-    //     redirect('panitia/pelelang');
-    // }
+
+    // Delete Peserta Deposit
+
+    public function delete($deposit_id)
+    {
+        $this->M_deposit->deleteDeposit($deposit_id);
+        redirect('panitia/deposit');
+    }
 }
